@@ -1,6 +1,6 @@
 {
   "name": "wizards-and-wyverns",
-  "homepage": "https://wizardryandwyverns.com/",
+  "homepage": "https://wizardryandwyverns.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
