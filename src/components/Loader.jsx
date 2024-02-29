@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Login from "./Login";
-import Register from "./Register";
+import Login from "../pages/SignIn";
+import Register from "../pages/Register";
 import LoginButton from "../shared/loginButton/LoginButton";
 import RegisterButton from "../shared/registerButton/RegisterButton";
 
