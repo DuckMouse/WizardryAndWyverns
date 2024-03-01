@@ -1,4 +1,4 @@
-.login-button {
+.signin-button {
     display: inline-block;
     padding: 10px 20px;
     margin: 10px;
@@ -12,6 +12,6 @@
     transition: background-color 0.3s ease;
   }
   
-  .login-button:hover {
+  .signin-button:hover {
     background-color: #45a049;
   }

@@ -6,6 +6,7 @@ import Contact from "./pages/Contact";
 import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </div>
       </div>

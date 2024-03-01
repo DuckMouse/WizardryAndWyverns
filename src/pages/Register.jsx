@@ -16,7 +16,7 @@ const registerWithEmail = async () => {
 
 const signUpWithGoogle = async () => {
     try {
-    await signOut(auth);
+    await signInWithPopup(auth, googleProvider);
     } catch (err) {
         console.error(err)
     }
@@ -24,7 +24,7 @@ const signUpWithGoogle = async () => {
 
 const logout = async () => {
     try {
-    await signInWithPopup(auth, googleProvider);
+    await signOut(auth);
     } catch (err) {
         console.error(err)
     }
@@ -43,7 +43,7 @@ const logout = async () => {
             
             <button onClick={registerWithEmail}>Sign Up</button>
             <button onClick={signUpWithGoogle}>Sign Up With Google</button>
-            <button>Log Out</button>
+            <button onClick={logout}>Log Out</button>
         </div>
     );
 }
