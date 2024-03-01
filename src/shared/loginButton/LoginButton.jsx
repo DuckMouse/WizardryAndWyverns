@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const LoginButton = ({ to, onClick, children }) => {
   return (
     <Link to={to}>
-      <button className="login-button" onClick={onClick}>
+      <button className="login-button" onClick={onClick}>Log In
         {children}
       </button>
     </Link>
