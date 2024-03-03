@@ -5,14 +5,17 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom"; 
 
 const Register = () => {
+  const navigate = useNavigate(); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const registerWithEmail = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+      redirectToDashboard(); 
     } catch (err) {
       console.error(err);
     }
@@ -21,9 +24,14 @@ const Register = () => {
   const signUpWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
+      redirectToDashboard(); 
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const redirectToDashboard = () => {
+    navigate('/dashboard'); 
   };
 
   const logout = async () => {
