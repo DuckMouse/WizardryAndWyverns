@@ -1,14 +1,13 @@
 import React from "react";
-import LoginButton from "../shared/signinButton/SinginButton";
-import RegisterButton from "../shared/registerButton/RegisterButton";
+import AuthButton from "../shared/AuthButton/AuthButton"
 
 const Home = () => {
   return (
     <div>
       <h2>Home Page</h2>
       <h3>TEAMPICK LOGO</h3>
-      <LoginButton to="/signin" />
-      <RegisterButton to="/register" />
+      <AuthButton to="/signIn" displayText="Log In" color="blue"></AuthButton>
+      <AuthButton to="/register" displayText="Register" color="green"></AuthButton>
     </div>
   );
 };

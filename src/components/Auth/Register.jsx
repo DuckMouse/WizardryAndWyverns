@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import { auth, googleProvider } from "../config/firebase";
+import { auth, googleProvider } from "../../config/firebase";
 import {
-  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
 
-const SignIn = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signInWithEmail = async () => {
+  const registerWithEmail = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
     } catch (err) {
       console.error(err);
     }
   };
 
-  const signInWithGoogle = async () => {
+  const signUpWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
     } catch (err) {
@@ -36,7 +36,7 @@ const SignIn = () => {
 
   return (
     <div>
-      <h2>Existing User Sign In</h2>
+      <h2>Registration Page</h2>
 
       <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
 
@@ -46,11 +46,11 @@ const SignIn = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button onClick={signInWithEmail}>Sign In</button>
-      <button onClick={signInWithGoogle}>Sign In With Google</button>
+      <button onClick={registerWithEmail}>Sign Up</button>
+      <button onClick={signUpWithGoogle}>Sign Up With Google</button>
       <button onClick={logout}>Log Out</button>
     </div>
   );
 };
 
-export default SignIn;
+export default Register;
