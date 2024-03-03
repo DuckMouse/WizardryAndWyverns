@@ -5,14 +5,18 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook
 
 const SignIn = () => {
+  const navigate = useNavigate(); // Initialize the navigate function
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const signInWithEmail = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      redirectToDashboard(); // Redirect to dashboard upon successful sign-in
     } catch (err) {
       console.error(err);
     }
@@ -21,9 +25,14 @@ const SignIn = () => {
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
+      redirectToDashboard(); // Redirect to dashboard upon successful sign-in
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const redirectToDashboard = () => {
+    navigate('/dashboard'); // Navigate to the dashboard route
   };
 
   const logout = async () => {
@@ -38,7 +47,10 @@ const SignIn = () => {
     <div>
       <h2>Existing User Sign In</h2>
 
-      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+      <input
+        placeholder="Email"
+        onChange={(e) => setEmail(e.target.value)}
+      />
 
       <input
         placeholder="Password"
