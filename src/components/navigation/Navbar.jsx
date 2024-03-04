@@ -2,17 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import "./Navbar.css";
+import { UseHandleSignOut } from "../auth/utilities";
 
 function Navbar() {
-  const { user, logOut } = UserAuth();
+  const { user } = UserAuth();
+  const handleSignOut = UseHandleSignOut();
 
-  const handleSignOut = async () => {
-    try {
-      await logOut();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
 
   return (
     <nav>

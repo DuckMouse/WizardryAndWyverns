@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { UserAuth } from "../../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
-import GoogleButton from "react-google-button";
+import { Link } from "react-router-dom";
+import { UseRedirectToDashboard } from "./utilities";
+import { RedirectToDashboardOnUser } from "./utilities";
 
 const SignIn = () => {
   const { googleSignIn, signInUser, user } = UserAuth();
-  const navigate = useNavigate();
+  RedirectToDashboardOnUser(user); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,21 +14,14 @@ const SignIn = () => {
     e.preventDefault();
     try {
       await signInUser(email, password);
-      redirectToDashboard();
+      UseRedirectToDashboard();
     } catch (err) {
       console.error(err);
     }
   };
 
-  const redirectToDashboard = () => {
-    navigate("/dashboard");
-  };
+  
 
-  useEffect(() => {
-    if (user != null) {
-      navigate("/dashboard");
-    }
-  }, [user, navigate]);
 
   return (
     <div>
@@ -51,7 +45,7 @@ const SignIn = () => {
         </div>
         <button type="submit">Sign In</button>
       </form>
-      <GoogleButton onClick={googleSignIn} />
+      <button onClick={googleSignIn}>Sign In With Google</button>
     </div>
   );
 };
