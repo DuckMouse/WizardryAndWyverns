@@ -1,62 +1,68 @@
-import React, { useState } from "react";
-import { auth, googleProvider } from "../../config/firebase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
-import { useNavigate } from "react-router-dom"; 
+import React, { useState, useEffect } from "react";
+import { UserAuth } from "../../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+import GoogleButton from "react-google-button";
 
 const Register = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const { googleSignIn, createUser, user } = UserAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const registerWithEmail = async () => {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      redirectToDashboard(); 
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const signUpWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-      redirectToDashboard(); 
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const [error, setError] = useState("");
 
   const redirectToDashboard = () => {
-    navigate('/dashboard'); 
+    navigate("/dashboard");
   };
 
-  const logout = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
     try {
-      await signOut(auth);
-    } catch (err) {
-      console.error(err);
+      await createUser(email, password);
+      redirectToDashboard();
+    } catch (e) {
+      setError(e.message);
     }
   };
+
+  useEffect(() => {
+    if (user != null) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
+
 
   return (
     <div>
       <h2>Registration Page</h2>
+      <p>
+        Already have an account? <Link to="/signin">Sign In</Link>
+      </p>
 
-      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Email Address</label>
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            required
+          />
+        </div>
+        <div>
+          <label>Password</label>
+          <input
+            placeholder="Password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
 
-      <input
-        placeholder="Password"
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <GoogleButton onClick={googleSignIn} />
 
-      <button onClick={registerWithEmail}>Sign Up</button>
-      <button onClick={signUpWithGoogle}>Sign Up With Google</button>
-      <button onClick={logout}>Log Out</button>
+      {error && <p>{error}</p>}
     </div>
   );
 };

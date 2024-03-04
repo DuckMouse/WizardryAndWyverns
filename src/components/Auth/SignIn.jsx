@@ -1,66 +1,57 @@
-import React, { useState } from "react";
-import { auth, googleProvider } from "../../config/firebase";
-import {
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
-import { useNavigate } from "react-router-dom"; 
+import React, { useState, useEffect } from "react";
+import { UserAuth } from "../../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+import GoogleButton from "react-google-button";
 
 const SignIn = () => {
-  const navigate = useNavigate(); 
-
+  const { googleSignIn, signInUser, user } = UserAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signInWithEmail = async () => {
+  const handleSignInWithEmail = async (e) => {
+    e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      redirectToDashboard(); 
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const signInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-      redirectToDashboard(); 
+      await signInUser(email, password);
+      redirectToDashboard();
     } catch (err) {
       console.error(err);
     }
   };
 
   const redirectToDashboard = () => {
-    navigate('/dashboard'); 
+    navigate("/dashboard");
   };
 
-  const logout = async () => {
-    try {
-      await signOut(auth);
-    } catch (err) {
-      console.error(err);
+  useEffect(() => {
+    if (user != null) {
+      navigate("/dashboard");
     }
-  };
+  }, [user, navigate]);
 
   return (
     <div>
       <h2>Existing User Sign In</h2>
+      <p>
+        Don't have an account yet? <Link to="/register">Register</Link>
+      </p>
 
-      <input
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-
-      <input
-        placeholder="Password"
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      <button onClick={signInWithEmail}>Sign In</button>
-      <button onClick={signInWithGoogle}>Sign In With Google</button>
-      <button onClick={logout}>Log Out</button>
+      <form onSubmit={handleSignInWithEmail}>
+        <div>
+          <label>Email Address</label>
+          <input onChange={(e) => setEmail(e.target.value)} type="email" />
+        </div>
+        <div>
+          <label>Password</label>
+          <input
+            placeholder="Password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit">Sign In</button>
+      </form>
+      <GoogleButton onClick={googleSignIn} />
     </div>
   );
 };

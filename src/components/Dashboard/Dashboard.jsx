@@ -1,24 +1,22 @@
 import React from "react";
-import { auth } from "../../config/firebase";
-import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../../context/AuthContext";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
+  const { logOut, user } = UserAuth();
 
-  const logout = async () => {
+  const handleSignOut = async () => {
     try {
-      await signOut(auth);
-      navigate("/");
-    } catch (err) {
-      console.error(err);
+      await logOut();
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
     <div>
       <h2>Dashboard Section For Logged In Users</h2>
-      <button onClick={logout}>Log Out</button>
+      <p>Welcome, {user.displayName ? user.displayName : user.email}</p>
+      <button onClick={handleSignOut}>Log Out</button>
     </div>
   );
 };

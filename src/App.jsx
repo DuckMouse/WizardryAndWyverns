@@ -6,9 +6,11 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import DashboardRoutes from "./routes/DashboardRoutes"; 
+import { AuthContextProvider } from "./context/AuthContext";
 
 function App() {
   return (
+    <AuthContextProvider>
     <Router>
       <div>
         <nav>
@@ -25,6 +27,7 @@ function App() {
         </div>
       </div>
     </Router>
+    </AuthContextProvider>
   );
 }
 
