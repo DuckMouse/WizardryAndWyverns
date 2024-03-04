@@ -45,7 +45,12 @@ const SignIn = () => {
         </div>
         <button type="submit">Sign In</button>
       </form>
+      <div>
       <button onClick={googleSignIn}>Sign In With Google</button>
+      </div>
+      <div>
+        <p>Having trouble logging in?</p>
+      </div>
     </div>
   );
 };
