@@ -49,7 +49,7 @@ const SignIn = () => {
       <button onClick={googleSignIn}>Sign In With Google</button>
       </div>
       <div>
-        <p>Having trouble logging in?</p>
+        <Link to="/passwordreset">Forgot Password?</Link>
       </div>
     </div>
   );

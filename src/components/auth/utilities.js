@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { UserAuth } from "../../context/AuthContext";
 
+
 export const RedirectToDashboardOnUser = (user) => {
   const navigate = useNavigate();
 
