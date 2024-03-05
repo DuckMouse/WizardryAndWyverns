@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { UseRedirectToDashboard } from "./utilities";
 import { RedirectToDashboardOnUser } from "./utilities";
 
-const Register = () => {
+export const Register = () => {
   const { googleSignIn, createUser, user } = UserAuth();
   RedirectToDashboardOnUser(user);
   const [email, setEmail] = useState("");
@@ -56,5 +56,3 @@ const Register = () => {
     </div>
   );
 };
-
-export default Register;

@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "../components/dashboard/Dashboard";
+import { Dashboard } from "../components/dashboard/Dashboard";
 import { Protected } from "./Protected";
 
-const DashboardRoutes = () => {
+export const DashboardRoutes = () => {
   return (
     <Routes>
       <Route
@@ -17,5 +17,3 @@ const DashboardRoutes = () => {
     </Routes>
   );
 };
-
-export default DashboardRoutes;

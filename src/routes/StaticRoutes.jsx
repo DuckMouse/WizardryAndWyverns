@@ -4,7 +4,7 @@ import Home from '../pages/Home';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
 
-const StaticRoutes = () => {
+export const StaticRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
@@ -13,5 +13,3 @@ const StaticRoutes = () => {
         </Routes>
     );
 };
-
-export default StaticRoutes;

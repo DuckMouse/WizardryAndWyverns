@@ -1,8 +1,8 @@
 import React from "react";
-import "./AuthButton.css"; 
+import "./AuthButton.css";
 import { Link } from "react-router-dom";
 
-const AuthButton = ({ to, onClick, children, displayText, color }) => {
+export const AuthButton = ({ to, onClick, children, displayText, color }) => {
   const buttonClassName = `auth-button ${color}-button`;
 
   return (
@@ -14,5 +14,3 @@ const AuthButton = ({ to, onClick, children, displayText, color }) => {
     </Link>
   );
 };
-
-export default AuthButton;

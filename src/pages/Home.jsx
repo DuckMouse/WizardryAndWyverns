@@ -1,5 +1,4 @@
-import React from "react";
-import AuthButton from "../shared/AuthButton/AuthButton"
+import { AuthButton } from '../shared'
 
 const Home = () => {
   return (

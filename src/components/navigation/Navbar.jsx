@@ -4,7 +4,7 @@ import { UserAuth } from "../../context/AuthContext";
 import "./Navbar.css";
 import { UseHandleSignOut } from "../auth/utilities";
 
-function Navbar() {
+export function Navbar() {
   const { user } = UserAuth();
   const handleSignOut = UseHandleSignOut();
 
@@ -56,5 +56,3 @@ function Navbar() {
     </nav>
   );
 }
-
-export default Navbar;
