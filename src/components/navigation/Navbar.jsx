@@ -8,8 +8,6 @@ function Navbar() {
   const { user } = UserAuth();
   const handleSignOut = UseHandleSignOut();
 
-  
-
   return (
     <nav>
       <ul className="navbar">

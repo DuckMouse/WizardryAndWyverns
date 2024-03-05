@@ -6,7 +6,7 @@ import { RedirectToDashboardOnUser } from "./utilities";
 
 const SignIn = () => {
   const { googleSignIn, signInUser, user } = UserAuth();
-  RedirectToDashboardOnUser(user); 
+  RedirectToDashboardOnUser(user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,9 +19,6 @@ const SignIn = () => {
       console.error(err);
     }
   };
-
-  
-
 
   return (
     <div>
@@ -46,7 +43,7 @@ const SignIn = () => {
         <button type="submit">Sign In</button>
       </form>
       <div>
-      <button onClick={googleSignIn}>Sign In With Google</button>
+        <button onClick={googleSignIn}>Sign In With Google</button>
       </div>
       <div>
         <Link to="/passwordreset">Forgot Password?</Link>

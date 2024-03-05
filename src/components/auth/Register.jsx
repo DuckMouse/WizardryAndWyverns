@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { UserAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
-import { UseRedirectToDashboard } from "./utilities"
+import { UseRedirectToDashboard } from "./utilities";
 import { RedirectToDashboardOnUser } from "./utilities";
-
 
 const Register = () => {
   const { googleSignIn, createUser, user } = UserAuth();
@@ -11,7 +10,6 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,8 +21,6 @@ const Register = () => {
       setError(e.message);
     }
   };
-
-
 
   return (
     <div>
