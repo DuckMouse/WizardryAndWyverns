@@ -1,17 +1,7 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Home from '../pages/Home';
-import About from '../pages/About';
-import Contact from '../pages/Contact';
+import { About, Contact, Home } from '../pages';
 
-const StaticRoutes = () => {
-    return (
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-        </Routes>
-    );
-};
-
-export default StaticRoutes;
+export const pageRoutes = [
+    { path: "/", name: "Home", element: <Home />, isMenu: true, isAuthenticated: false },
+    { path: "/about", name: "About", element: <About />, isMenu: true, isAuthenticated: false },
+    { path: "/contact", name: "Contact", element: <Contact />, isMenu: true, isAuthenticated: false },
+]

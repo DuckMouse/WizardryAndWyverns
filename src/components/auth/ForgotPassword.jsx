@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom"; 
 import { UserAuth } from "../../context/AuthContext"; 
 
-const ForgotPassword = () => {
+export const ForgotPassword = () => {
   const emailRef = useRef();
   const navigate = useNavigate(); 
   const { forgotPassword } = UserAuth(); 
@@ -31,5 +31,3 @@ const ForgotPassword = () => {
     </div>
   );
 };
-
-export default ForgotPassword;

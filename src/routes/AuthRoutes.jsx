@@ -1,17 +1,8 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import SignIn from '../components/auth/SignIn';
-import Register from '../components/auth/Register';
-import ForgotPassword from '../components/auth/ForgotPassword';
+import { SignIn, Register, ForgotPassword } from '../components/auth';
 
-const AuthRoutes = () => {
-    return (
-        <Routes>
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/passwordreset" element={<ForgotPassword />} />
-        </Routes>
-    );
-};
+export const authRoutes = [
+    { path: "/signin", name: "Sign in", element: <SignIn />, isMenu: false, isAuthenticated: false },
+    { path: "/register", name: "Register", element: <Register />, isMenu: false, isAuthenticated: false },
+    { path: "/passwordreset", name: "Forgot Password", element: <ForgotPassword />, isMenu: false, isAuthenticated: false },
 
-export default AuthRoutes;
+]

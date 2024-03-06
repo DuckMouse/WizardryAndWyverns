@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { UseRedirectToDashboard } from "./utilities";
 import { RedirectToDashboardOnUser } from "./utilities";
 
-const SignIn = () => {
+export const SignIn = () => {
   const { googleSignIn, signInUser, user } = UserAuth();
   RedirectToDashboardOnUser(user);
   const [email, setEmail] = useState("");
@@ -52,4 +52,3 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
