@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Navbar } from "./components/navigation/Navbar";
-import { AuthRoutes, StaticRoutes, DashboardRoutes } from './routes'
+import { TopNavBar } from "./components/navigation/Navbar";
 import { AuthContextProvider } from "./context/AuthContext";
+import { RenderRoutes } from "./routes/AppRoutes";
 
 export function App() {
   return (
@@ -10,12 +10,10 @@ export function App() {
       <Router>
         <div>
           <nav>
-            <Navbar />
+            <TopNavBar />
           </nav>
           <div>
-            <StaticRoutes />
-            <AuthRoutes />
-            <DashboardRoutes />
+            {<RenderRoutes />}
           </div>
         </div>
       </Router>
