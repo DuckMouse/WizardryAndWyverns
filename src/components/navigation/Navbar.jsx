@@ -23,13 +23,13 @@ export const TopNavBar = () => {
         {routes.map((r, i) => {
           if (!r.isAuthenticated && r.isMenu) {
             return (<NavBarItem key={i} route={r} />)
-          } else if (!user?.isAnonymous && r.isMenu) {
+          } else if (!user?.isAnonymous && user && r.isMenu) {
             return (<NavBarItem key={i} route={r} />)
           }
           else return false
         })}
         {
-          !!user?.isAnonymous ?
+          user && !user?.isAnonymous ?
             <li className="auth-link"><Link to={'#'} onClick={handleSignOut}>Log out</Link></li> :
             <li className="auth-link"><Link to={'signin'}>Sign In</Link></li>
         }
