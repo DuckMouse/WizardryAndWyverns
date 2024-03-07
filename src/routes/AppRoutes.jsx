@@ -10,7 +10,7 @@ export const RenderRoutes = () => {
     return (
         <Routes>
             {routes.map((r, i) => {
-                if (r.isAuthenticated && !user.isAnonymous) {
+                if (r.isAuthenticated && !user?.isAnonymous) {
                     return <Route key={i} path={r.path} element={r.element} />
                 } else if (!r.isAuthenticated) {
                     return <Route key={i} path={r.path} element={r.element} />
