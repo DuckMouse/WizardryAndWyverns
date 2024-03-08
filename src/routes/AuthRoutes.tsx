@@ -1,4 +1,5 @@
-import { SignIn, Register, ForgotPassword } from '../components/auth';
+import { ForgotPassword, Register, SignIn } from "../components/auth";
+
 
 export const authRoutes = [
     { path: "/signin", name: "Sign in", element: <SignIn />, isMenu: false, isAuthenticated: false },

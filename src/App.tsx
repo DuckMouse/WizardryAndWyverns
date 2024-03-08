@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { TopNavBar } from "./components/navigation/Navbar";
-import { AuthContextProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthContext";
 import { RenderRoutes } from "./routes/AppRoutes";
 
-export function App() {
+export function App(): React.JSX.Element {
   return (
-    <AuthContextProvider>
+    <AuthProvider>
       <Router>
         <div>
           <nav>
@@ -17,6 +17,6 @@ export function App() {
           </div>
         </div>
       </Router>
-    </AuthContextProvider>
+    </AuthProvider>
   );
 }

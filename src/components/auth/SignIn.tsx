@@ -1,20 +1,19 @@
-import React, { useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import { UserAuth } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
-import { UseRedirectToDashboard } from "./utilities";
-import { RedirectToDashboardOnUser } from "./utilities";
+import { Link, useNavigate } from "react-router-dom";
 
 export const SignIn = () => {
   const { googleSignIn, signInUser, user } = UserAuth();
-  RedirectToDashboardOnUser(user);
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignInWithEmail = async (e) => {
+  const handleSignInWithEmail = async (e: SyntheticEvent) => {
     e.preventDefault();
     try {
       await signInUser(email, password);
-      UseRedirectToDashboard();
+      return navigate("/dashboard");
     } catch (err) {
       console.error(err);
     }

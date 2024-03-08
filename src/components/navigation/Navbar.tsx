@@ -2,14 +2,13 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import "./Navbar.css";
-import { UseHandleSignOut } from "../auth/utilities";
 import { routes } from "../../routes/AppRoutes";
 
 export const TopNavBar = () => {
-  const { user } = UserAuth();
-  const handleSignOut = UseHandleSignOut();
+  const { user, logOut } = UserAuth();
+  const handleSignOut = logOut;
 
-  const NavBarItem = ({ route }) => {
+  const NavBarItem = ({ route }: any) => {
     return (
       <li>
         <NavLink to={route.path}>{route.name}</NavLink>
@@ -29,7 +28,7 @@ export const TopNavBar = () => {
           else return false
         })}
         {
-          user && !user?.isAnonymous ?
+          !!user && !user?.isAnonymous ?
             <li className="auth-link"><Link to={'#'} onClick={handleSignOut}>Log out</Link></li> :
             <li className="auth-link"><Link to={'signin'}>Sign In</Link></li>
         }
