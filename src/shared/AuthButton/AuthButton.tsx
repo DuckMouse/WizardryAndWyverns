@@ -2,7 +2,15 @@ import React from "react";
 import "./AuthButton.css";
 import { Link } from "react-router-dom";
 
-export const AuthButton = ({ to, onClick, children, displayText, color }) => {
+export interface IAuthProperties {
+  to: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>,
+  children?: any;
+  displayText?: string;
+  color?: string
+}
+
+export const AuthButton = ({ to, onClick, children, displayText, color }: IAuthProperties) => {
   const buttonClassName = `auth-button ${color}-button`;
 
   return (

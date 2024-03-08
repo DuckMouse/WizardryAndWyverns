@@ -1,19 +1,20 @@
-import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom"; 
-import { UserAuth } from "../../context/AuthContext"; 
+import React, { SyntheticEvent, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../../context/AuthContext";
 
 export const ForgotPassword = () => {
-  const emailRef = useRef();
-  const navigate = useNavigate(); 
-  const { forgotPassword } = UserAuth(); 
+  const emailRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  const { forgotPassword } = UserAuth();
 
-  const handleSubmit = async (e) => {
+
+
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    const email = emailRef.current.value; 
     try {
-      await forgotPassword(email);
-      navigate("/signin"); 
-    } catch (error) {
+      await forgotPassword(emailRef.current?.value!);
+      navigate("/signin");
+    } catch (error: any) {
       console.log("Error sending password reset email:", error.message);
     }
   };

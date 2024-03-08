@@ -1,4 +1,5 @@
-import { AuthButton } from '../shared'
+import { AuthButton } from "../shared/AuthButton/AuthButton";
+
 
 const Home = () => {
   return (
