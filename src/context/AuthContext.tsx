@@ -1,4 +1,4 @@
-import { useContext, createContext, useEffect, useState } from "react";
+import { useContext, createContext, useEffect, useState, } from "react";
 import { auth } from "../config/firebase";
 import {
   GoogleAuthProvider,
@@ -8,33 +8,36 @@ import {
   sendPasswordResetEmail,
   signOut,
   onAuthStateChanged,
+  User,
 } from "firebase/auth";
+import { LayoutRouteProps } from "react-router-dom";
+import { IAuthContext } from "./AuthContext.model";
 
-const AuthContext = createContext();
-
-export const AuthContextProvider = ({ children }) => {
-  const createUser = (email, password) => {
+const defaultState: IAuthContext = {
+  user: null,
+  createUser: (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
-  };
-
-  const signInUser = (email, password) => {
+  },
+  signInUser: (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password);
-  };
-
-  const [user, setUser] = useState({});
-
-  const googleSignIn = () => {
+  },
+  googleSignIn: () => {
     const provider = new GoogleAuthProvider();
     signInWithRedirect(auth, provider);
-  };
-
-  const forgotPassword = (email) => {
+  },
+  forgotPassword: (email: string) => {
     return sendPasswordResetEmail(auth, email);
-  };
-
-  const logOut = () => {
+  },
+  logOut: () => {
     signOut(auth);
-  };
+  }
+}
+
+export const AuthContext = createContext<IAuthContext>(defaultState);
+
+export const AuthProvider = (props: LayoutRouteProps) => {
+
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -45,11 +48,16 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
 
+  const state: IAuthContext = {
+    ...defaultState,
+    user
+  }
+
   return (
     <AuthContext.Provider
-      value={{ createUser, googleSignIn, signInUser, forgotPassword, logOut, user }}
+      value={state}
     >
-      {children}
+      {props.children}
     </AuthContext.Provider>
   );
 };
