@@ -1,58 +1,62 @@
-import React, { SyntheticEvent, useState } from "react";
-import { UserAuth } from "../../context/AuthContext";
+import React, { type SyntheticEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../../context/AuthContext";
 
 export const Register = () => {
-  const { googleSignIn, createUser, user } = UserAuth();
-  const navigate = useNavigate();
+	const { googleSignIn, createUser, user } = UserAuth();
+	const navigate = useNavigate();
 
-  if (!!user) navigate("./dashboard");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+	if (user) navigate("./dashboard");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
 
-  const handleSubmit = async (e: SyntheticEvent) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await createUser(email, password);
-      navigate("/dashboard");
-    } catch (e: any) {
-      setError(e.message);
-    }
-  };
+	const handleSubmit = async (e: SyntheticEvent) => {
+		e.preventDefault();
+		setError("");
+		try {
+			await createUser(email, password);
+			navigate("/dashboard");
+		} catch (e: unknown) {
+			if (e instanceof Error) {
+				setError(e.message);
+			}
+		}
+	};
 
-  return (
-    <div>
-      <h2>Registration Page</h2>
-      <p>
-        Already have an account? <Link to="/signin">Sign In</Link>
-      </p>
+	return (
+		<div>
+			<h2>Registration Page</h2>
+			<p>
+				Already have an account? <Link to="/signin">Sign In</Link>
+			</p>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email Address</label>
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            required
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            placeholder="Password"
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Sign Up</button>
-      </form>
+			<form onSubmit={handleSubmit}>
+				<div>
+					<label>Email Address</label>
+					<input
+						onChange={(e) => setEmail(e.target.value)}
+						type="email"
+						required
+					/>
+				</div>
+				<div>
+					<label>Password</label>
+					<input
+						placeholder="Password"
+						type="password"
+						onChange={(e) => setPassword(e.target.value)}
+						required
+					/>
+				</div>
+				<button type="submit">Sign Up</button>
+			</form>
 
-      <button onClick={googleSignIn}>Sign Up With Google</button>
+			<button type="button" onClick={googleSignIn}>
+				Sign Up With Google
+			</button>
 
-      {error && <p>{error}</p>}
-    </div>
-  );
+			{error && <p>{error}</p>}
+		</div>
+	);
 };
