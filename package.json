@@ -26,7 +26,8 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "predeploy": "npm run build",
-    "lint": "npx @biomejs/biome lint ./src"
+    "lint": "npx @biomejs/biome lint ./src",
+    "format": "npx @biomejs/biome format ./src"
 
   },
   "eslintConfig": {
