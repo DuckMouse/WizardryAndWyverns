@@ -3,6 +3,11 @@
 	"organizeImports": {
 		"enabled": true
 	},
+	"files": {
+		"include": [
+			"src/*"
+		]
+	},
 	"linter": {
 		"enabled": true,
 		"rules": {
