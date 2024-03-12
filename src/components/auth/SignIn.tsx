@@ -42,7 +42,9 @@ export const SignIn = () => {
 				<button type="submit">Sign In</button>
 			</form>
 			<div>
-				<button type="button" onClick={googleSignIn}>Sign In With Google</button>
+				<button type="button" onClick={googleSignIn}>
+					Sign In With Google
+				</button>
 			</div>
 			<div>
 				<Link to="/passwordreset">Forgot Password?</Link>

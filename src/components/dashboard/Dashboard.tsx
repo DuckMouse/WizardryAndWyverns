@@ -16,7 +16,9 @@ export const Dashboard = () => {
 		<div>
 			<h2>Dashboard Section For Logged In Users</h2>
 			<p>Welcome, {user?.displayName ? user.displayName : user?.email}</p>
-			<button type="button" onClick={handleSignOut}>Log Out</button>
+			<button type="button" onClick={handleSignOut}>
+				Log Out
+			</button>
 		</div>
 	);
 };

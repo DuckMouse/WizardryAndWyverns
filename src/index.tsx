@@ -5,7 +5,6 @@ import { App } from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
-
 const container: HTMLElement = document.getElementById("root")!;
 const root = createRoot(container);
 root.render(<App />);
