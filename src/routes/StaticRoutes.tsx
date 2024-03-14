@@ -9,6 +9,7 @@ export const pageRoutes: TeamPickRoute[] = [
 		element: <Home />,
 		isMenu: true,
 		isAuthenticated: false,
+		isCurrent: true,
 	},
 	{
 		id: "route_about",

@@ -1,18 +1,17 @@
 import {
 	GoogleAuthProvider,
-	type User,
 	createUserWithEmailAndPassword,
 	onAuthStateChanged,
 	sendPasswordResetEmail,
 	signInWithEmailAndPassword,
 	signInWithRedirect,
 	signOut,
+	type User,
 } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import type { LayoutRouteProps } from "react-router-dom";
 import { auth } from "../config/firebase";
 import type { IAuthContext } from "./AuthContext.model";
-
 const defaultState: IAuthContext = {
 	user: null,
 	createUser: (email: string, password: string) => {

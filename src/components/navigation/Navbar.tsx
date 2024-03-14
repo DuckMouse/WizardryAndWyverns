@@ -1,9 +1,15 @@
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment, useEffect } from "react";
 import teampicklogo from "../..//assets/images/teampick_logo.png";
 import { UserAuth } from "../../context/AuthContext";
 import { routes } from "../../routes/AppRoutes";
+import {
+	SignInButton,
+	SignedIn,
+	SignedOut,
+	UserButton,
+} from "@clerk/clerk-react";
+import { TPLink } from "../../shared";
 
 export const TopNavBar = () => {
 	const { user, logOut } = UserAuth();
@@ -29,30 +35,17 @@ export const TopNavBar = () => {
 								</div>
 								<div className="hidden sm:ml-6 sm:block">
 									<div className="flex space-x-4">
-										{routes.map((r, i) => {
-											if (!r.isAuthenticated && r.isMenu) {
-												return (
-													<Link
-														key={r.id}
-														to={r.path}
-														className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-													>
-														{r.name}
-													</Link>
-												);
-											}
-											if (!user?.isAnonymous && user && r.isMenu) {
-												return (
-													<Link
-														key={r.id}
-														to={r.path}
-														className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-													>
-														{r.name}
-													</Link>
-												);
-											}
-										})}
+										{routes
+											.filter((r) => r.isMenu)
+											.map((r, i) => (
+												<TPLink
+													key={r.id}
+													id={r.id}
+													path={r.path}
+													name={r.name}
+													authOnly={r.isAuthenticated}
+												/>
+											))}
 									</div>
 								</div>
 							</div>
@@ -61,7 +54,13 @@ export const TopNavBar = () => {
 									{/* Profile dropdown */}
 									<Menu as="div" className="relative ml-3">
 										<div>
-											<Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+											<UserButton afterSignOutUrl="/" />
+											<SignInButton afterSignInUrl="/dashboard" mode="modal">
+												<SignedOut>
+													<div className="relative flex text-white">Login</div>
+												</SignedOut>
+											</SignInButton>
+											{/* <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
 												<span className="absolute -inset-1.5" />
 												<span className="sr-only">Open user menu</span>
 												<img
@@ -69,7 +68,7 @@ export const TopNavBar = () => {
 													src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1935&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
 													alt=""
 												/>
-											</Menu.Button>
+											</Menu.Button> */}
 										</div>
 										<Transition
 											as={Fragment}
@@ -81,7 +80,7 @@ export const TopNavBar = () => {
 											leaveTo="transform opacity-0 scale-95"
 										>
 											<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-												{user && !user?.isAnonymous ? (
+												<SignedIn>
 													<Menu.Item>
 														{({ active }) => (
 															<button
@@ -96,7 +95,9 @@ export const TopNavBar = () => {
 															</button>
 														)}
 													</Menu.Item>
-												) : (
+												</SignedIn>
+
+												<SignedOut>
 													<Menu.Item>
 														{({ active }) => (
 															<a
@@ -110,7 +111,7 @@ export const TopNavBar = () => {
 															</a>
 														)}
 													</Menu.Item>
-												)}
+												</SignedOut>
 											</Menu.Items>
 										</Transition>
 									</Menu>

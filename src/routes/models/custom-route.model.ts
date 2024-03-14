@@ -7,6 +7,7 @@ export interface TeamPickRoute {
 	element: ReactElement;
 	isMenu: boolean;
 	isAuthenticated: boolean;
+	isCurrent?: boolean;
 }
 
 // id: "route_passwordreset",
