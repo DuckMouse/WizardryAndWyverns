@@ -19,5 +19,5 @@ jobs:
           files: '[".env.tokenized.prod"]'
       - name: Change files
         run: |
-          rm .env.tokenized.prod
+          rm .env.prod
           mv .env.tokenized.prod .env.prod
