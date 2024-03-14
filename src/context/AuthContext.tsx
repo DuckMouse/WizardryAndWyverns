@@ -1,12 +1,12 @@
 import {
 	GoogleAuthProvider,
+	type User,
 	createUserWithEmailAndPassword,
 	onAuthStateChanged,
 	sendPasswordResetEmail,
 	signInWithEmailAndPassword,
 	signInWithRedirect,
 	signOut,
-	type User,
 } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import type { LayoutRouteProps } from "react-router-dom";

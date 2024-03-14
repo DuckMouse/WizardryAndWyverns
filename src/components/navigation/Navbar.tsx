@@ -1,14 +1,14 @@
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import React, { Fragment, useEffect } from "react";
-import teampicklogo from "../..//assets/images/teampick_logo.png";
-import { UserAuth } from "../../context/AuthContext";
-import { routes } from "../../routes/AppRoutes";
 import {
 	SignInButton,
 	SignedIn,
 	SignedOut,
 	UserButton,
 } from "@clerk/clerk-react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import React, { Fragment, useEffect } from "react";
+import teampicklogo from "../..//assets/images/teampick_logo.png";
+import { UserAuth } from "../../context/AuthContext";
+import { routes } from "../../routes/AppRoutes";
 import { TPLink } from "../../shared";
 
 export const TopNavBar = () => {
