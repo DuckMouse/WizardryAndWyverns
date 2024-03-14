@@ -20,4 +20,4 @@ jobs:
       - name: Change files
         run: |
           rm .env.tokenized.prod
-          mv .env_tokenized.prod .env.prod
+          mv .env.tokenized.prod .env.prod
