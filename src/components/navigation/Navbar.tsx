@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import teampicklogo from "../..//assets/images/teampick_logo.png";
 import { UserAuth } from "../../context/AuthContext";
 import { routes } from "../../routes/AppRoutes";
+import { TPLink } from "../../shared";
+import { LoginDialog } from "../auth";
 
 export const TopNavBar = () => {
 	const { user, logOut } = UserAuth();
@@ -32,24 +34,22 @@ export const TopNavBar = () => {
 										{routes.map((r, i) => {
 											if (!r.isAuthenticated && r.isMenu) {
 												return (
-													<Link
+													<TPLink
 														key={r.id}
-														to={r.path}
-														className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-													>
-														{r.name}
-													</Link>
+														id={r.id}
+														path={r.path}
+														name={r.name}
+													/>
 												);
 											}
 											if (!user?.isAnonymous && user && r.isMenu) {
 												return (
-													<Link
+													<TPLink
 														key={r.id}
-														to={r.path}
-														className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-													>
-														{r.name}
-													</Link>
+														id={r.id}
+														path={r.path}
+														name={r.name}
+													/>
 												);
 											}
 										})}
@@ -98,17 +98,7 @@ export const TopNavBar = () => {
 													</Menu.Item>
 												) : (
 													<Menu.Item>
-														{({ active }) => (
-															<a
-																href="/signin"
-																className={classNames(
-																	active ? "bg-gray-100" : "",
-																	"block px-4 py-2 text-sm text-gray-700",
-																)}
-															>
-																Sign In
-															</a>
-														)}
+														{({ active }) => <LoginDialog />}
 													</Menu.Item>
 												)}
 											</Menu.Items>
