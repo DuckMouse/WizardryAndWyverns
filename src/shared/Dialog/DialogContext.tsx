@@ -1,5 +1,5 @@
-import { createContext, type Context } from "react";
 import type { DialogPropTypes, DialogWidthType } from "./types";
+import { type Context, createContext } from "react";
 
 export const dialogContext: Context<DialogPropTypes> = createContext({
 	displayText: "",
