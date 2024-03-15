@@ -29,7 +29,7 @@
     "serve": "vite preview",
     "predeploy": "npm run build",
     "lint": "npx @biomejs/biome lint ./src",
-    "format": "npx @biomejs/biome format ./src"
+    "format": "npx @biomejs/biome format --write ./src"
   },
   "eslintConfig": {
     "extends": [

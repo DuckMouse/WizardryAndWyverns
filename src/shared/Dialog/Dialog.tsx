@@ -1,8 +1,8 @@
 import React from "react";
 
-import type { DialogPropTypes } from "./types";
-import { dialogContext } from "./DialogContext";
 import type { Subtract } from "utility-types";
+import { dialogContext } from "./DialogContext";
+import type { DialogPropTypes } from "./types";
 
 export const WithDialog = <Props extends DialogPropTypes>(
 	Component: React.ComponentType<Props>,

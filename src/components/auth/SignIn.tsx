@@ -1,8 +1,7 @@
-import React, { type SyntheticEvent, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { type SyntheticEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
-import { WithDialog, type DialogPropTypes } from "../../shared";
-import type { User } from "firebase/auth";
+import { type DialogPropTypes, WithDialog } from "../../shared";
 
 export const Login = (props: DialogPropTypes) => {
 	const { signInUser, user } = UserAuth();
