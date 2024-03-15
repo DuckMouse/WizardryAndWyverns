@@ -1,12 +1,12 @@
+import { Dialog } from "@headlessui/react";
 import React from "react";
+import { dialogContext } from "./DialogContext";
 import type {
 	DialogPropTypes,
 	DialogWidthType,
 	EmptyFunctionType,
 	OpenDialogType,
 } from "./types";
-import { dialogContext } from "./DialogContext";
-import { Dialog } from "@headlessui/react";
 
 interface StateTypes {
 	value: DialogPropTypes;
