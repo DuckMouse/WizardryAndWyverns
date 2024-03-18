@@ -1,11 +1,11 @@
 import {
+	GoogleAuthProvider,
 	type UserCredential,
 	createUserWithEmailAndPassword,
-	signInWithEmailAndPassword,
 	sendPasswordResetEmail,
-	signOut,
-	GoogleAuthProvider,
+	signInWithEmailAndPassword,
 	signInWithRedirect,
+	signOut,
 } from "firebase/auth";
 import { auth } from "../../config/firebase";
 

@@ -1,11 +1,11 @@
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import teampicklogo from "../..//assets/images/teampick_logo.png";
-import { routes } from "../../routes/AppRoutes";
-import { useSelector } from "react-redux";
-import type { IAppState } from "../../store";
 import { logOutUser } from "../../features/auth";
+import { routes } from "../../routes/AppRoutes";
+import type { IAppState } from "../../store";
 
 export const TopNavBar = () => {
 	const user = useSelector((state: IAppState) => state.auth.user);

@@ -1,6 +1,6 @@
 import React from "react";
-import { logOutUser } from "../../features/auth";
 import { useSelector } from "react-redux";
+import { logOutUser } from "../../features/auth";
 import type { IAppState } from "../../store";
 
 export const Dashboard = () => {

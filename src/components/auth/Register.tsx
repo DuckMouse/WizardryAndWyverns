@@ -1,7 +1,7 @@
-import { useState, type SyntheticEvent } from "react";
+import { type SyntheticEvent, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { createUser, googleSignIn } from "../../features/auth";
-import { useSelector } from "react-redux";
 import type { IAppState } from "../../store";
 
 export const Register = () => {
