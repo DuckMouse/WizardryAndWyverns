@@ -1,9 +1,8 @@
 import React, { type SyntheticEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserAuth } from "../../context/AuthContext";
+import { googleSignIn, loginUser } from "../../features/auth";
 
 export const SignIn = () => {
-	const { googleSignIn, signInUser, user } = UserAuth();
 	const navigate = useNavigate();
 
 	const [email, setEmail] = useState("");
@@ -12,7 +11,7 @@ export const SignIn = () => {
 	const handleSignInWithEmail = async (e: SyntheticEvent) => {
 		e.preventDefault();
 		try {
-			await signInUser(email, password);
+			await loginUser(email, password);
 			return navigate("/dashboard");
 		} catch (err) {
 			console.error(err);

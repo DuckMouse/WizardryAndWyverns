@@ -1,9 +1,11 @@
-import React, { type SyntheticEvent, useState } from "react";
+import { useState, type SyntheticEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserAuth } from "../../context/AuthContext";
+import { createUser, googleSignIn } from "../../features/auth";
+import { useSelector } from "react-redux";
+import type { IAppState } from "../../store";
 
 export const Register = () => {
-	const { googleSignIn, createUser, user } = UserAuth();
+	const user = useSelector((store: IAppState) => store.auth.user);
 	const navigate = useNavigate();
 
 	if (user) navigate("./dashboard");

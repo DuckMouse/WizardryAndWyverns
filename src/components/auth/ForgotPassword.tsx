@@ -1,11 +1,10 @@
 import { type SyntheticEvent, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserAuth } from "../../context/AuthContext";
+import { forgotPassword } from "../../features/auth";
 
 export const ForgotPassword = () => {
 	const emailRef = useRef<HTMLInputElement>(null);
 	const navigate = useNavigate();
-	const { forgotPassword } = UserAuth();
 
 	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();

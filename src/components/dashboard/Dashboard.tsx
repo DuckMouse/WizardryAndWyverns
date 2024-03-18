@@ -1,12 +1,14 @@
 import React from "react";
-import { UserAuth } from "../../context/AuthContext";
+import { logOutUser } from "../../features/auth";
+import { useSelector } from "react-redux";
+import type { IAppState } from "../../store";
 
 export const Dashboard = () => {
-	const { logOut, user } = UserAuth();
+	const user = useSelector((store: IAppState) => store.auth.user);
 
 	const handleSignOut = async () => {
 		try {
-			await logOut();
+			await logOutUser();
 		} catch (error) {
 			console.log(error);
 		}
