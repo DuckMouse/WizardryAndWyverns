@@ -1,6 +1,6 @@
 import type { Action, ThunkDispatch } from "@reduxjs/toolkit";
 import type { User } from "firebase/auth";
-import { useState, type SyntheticEvent } from "react";
+import { type SyntheticEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { googleSignIn, loginUser } from "../../features/auth";

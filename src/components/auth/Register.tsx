@@ -1,11 +1,11 @@
+import type { Action, ThunkDispatch } from "@reduxjs/toolkit";
+import type { User } from "firebase/auth";
 import { type SyntheticEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { createUser, googleSignIn } from "../../features/auth";
-import type { IAppState } from "../../store";
-import type { Action, ThunkDispatch } from "@reduxjs/toolkit";
-import type { User } from "firebase/auth";
 import type { IBasicCredentials } from "../../features/auth/models";
+import type { IAppState } from "../../store";
 
 export const Register = () => {
 	const user = useSelector((store: IAppState) => store.auth.user);

@@ -1,14 +1,14 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
 	GoogleAuthProvider,
+	type User,
 	createUserWithEmailAndPassword,
 	sendPasswordResetEmail,
 	signInWithEmailAndPassword,
 	signInWithRedirect,
 	signOut,
-	type User,
 } from "firebase/auth";
 import { auth } from "../../config/firebase";
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import type { IBasicCredentials } from "./models";
 
 export enum AuthActions {

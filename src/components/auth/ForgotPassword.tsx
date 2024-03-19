@@ -1,9 +1,9 @@
+import type { Action, ThunkDispatch } from "@reduxjs/toolkit";
+import type { User } from "firebase/auth";
 import { type SyntheticEvent, useRef } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { forgotPassword } from "../../features/auth";
-import { useDispatch } from "react-redux";
-import type { ThunkDispatch, Action } from "@reduxjs/toolkit";
-import type { User } from "firebase/auth";
 import type { IBasicCredentials } from "../../features/auth/models";
 
 export const ForgotPassword = () => {
