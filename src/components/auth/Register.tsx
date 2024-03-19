@@ -1,12 +1,17 @@
 import { type SyntheticEvent, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { createUser, googleSignIn } from "../../features/auth";
 import type { IAppState } from "../../store";
+import type { Action, ThunkDispatch } from "@reduxjs/toolkit";
+import type { User } from "firebase/auth";
+import type { IBasicCredentials } from "../../features/auth/models";
 
 export const Register = () => {
 	const user = useSelector((store: IAppState) => store.auth.user);
 	const navigate = useNavigate();
+	const dispatch =
+		useDispatch<ThunkDispatch<User, IBasicCredentials, Action>>();
 
 	if (user) navigate("./dashboard");
 	const [email, setEmail] = useState("");
@@ -17,8 +22,9 @@ export const Register = () => {
 		e.preventDefault();
 		setError("");
 		try {
-			await createUser(email, password);
-			navigate("/dashboard");
+			dispatch(createUser({ email, password })).then(() => {
+				navigate("/dashboard");
+			});
 		} catch (e: unknown) {
 			if (e instanceof Error) {
 				setError(e.message);
