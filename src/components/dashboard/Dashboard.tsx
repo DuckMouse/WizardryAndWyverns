@@ -1,12 +1,20 @@
+import type { Action, ThunkDispatch } from "@reduxjs/toolkit";
+import type { User } from "firebase/auth";
 import React from "react";
-import { UserAuth } from "../../context/AuthContext";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logOutUser } from "../../features/auth";
+import type { IBasicCredentials } from "../../features/auth/models";
+import type { IAppState } from "../../store";
 
 export const Dashboard = () => {
-	const { logOut, user } = UserAuth();
+	const user = useSelector((store: IAppState) => store.auth.user);
+	const dispatch =
+		useDispatch<ThunkDispatch<User, IBasicCredentials, Action>>();
 
 	const handleSignOut = async () => {
 		try {
-			await logOut();
+			dispatch(logOutUser());
 		} catch (error) {
 			console.log(error);
 		}

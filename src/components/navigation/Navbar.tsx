@@ -1,13 +1,14 @@
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import teampicklogo from "../..//assets/images/teampick_logo.png";
-import { UserAuth } from "../../context/AuthContext";
+import { logOutUser } from "../../features/auth";
 import { routes } from "../../routes/AppRoutes";
+import type { IAppState } from "../../store";
 
 export const TopNavBar = () => {
-	const { user, logOut } = UserAuth();
-	const handleSignOut = logOut;
+	const user = useSelector((state: IAppState) => state.auth.user);
 
 	function classNames(...classes: string[]) {
 		return classes.filter(Boolean).join(" ");
@@ -90,7 +91,7 @@ export const TopNavBar = () => {
 																	active ? "bg-gray-100" : "",
 																	"block px-4 py-2 text-sm text-gray-700",
 																)}
-																onClick={handleSignOut}
+																onClick={logOutUser}
 															>
 																Sign out
 															</button>

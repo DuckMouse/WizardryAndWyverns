@@ -1,11 +1,12 @@
+import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { UserAuth } from "../context/AuthContext";
+import type { IAppState } from "../store";
 import { authRoutes } from "./AuthRoutes";
 import { protectedRoutes } from "./DashboardRoutes";
 import { pageRoutes } from "./StaticRoutes";
 
 export const RenderRoutes = () => {
-	const { user } = UserAuth();
+	const user = useSelector((store: IAppState) => store.auth.user);
 
 	return (
 		<Routes>

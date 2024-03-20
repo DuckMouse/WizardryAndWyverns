@@ -1,10 +1,15 @@
-import React, { type SyntheticEvent, useEffect, useState } from "react";
+import type { Action, ThunkDispatch } from "@reduxjs/toolkit";
+import type { User } from "firebase/auth";
+import { type SyntheticEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { UserAuth } from "../../context/AuthContext";
+import { googleSignIn, loginUser } from "../../features/auth";
+import type { IBasicCredentials } from "../../features/auth/models";
 
 export const SignIn = () => {
-	const { googleSignIn, signInUser, user } = UserAuth();
 	const navigate = useNavigate();
+	const dispatch =
+		useDispatch<ThunkDispatch<User, IBasicCredentials, Action>>();
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -12,8 +17,9 @@ export const SignIn = () => {
 	const handleSignInWithEmail = async (e: SyntheticEvent) => {
 		e.preventDefault();
 		try {
-			await signInUser(email, password);
-			return navigate("/dashboard");
+			dispatch(loginUser({ email, password })).then(() => {
+				navigate("/dashboard");
+			});
 		} catch (err) {
 			console.error(err);
 		}
