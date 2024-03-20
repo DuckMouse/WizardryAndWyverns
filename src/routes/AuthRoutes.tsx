@@ -1,4 +1,5 @@
-import { ForgotPassword, Register, SignIn } from "../components/auth";
+import { ForgotPassword, Register } from "../components/auth";
+import { SignIn } from "../features/auth/pages/SignIn";
 import type { TeamPickRoute } from "./models/custom-route.model";
 
 export const authRoutes: TeamPickRoute[] = [

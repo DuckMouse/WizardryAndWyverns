@@ -1,14 +1,30 @@
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import React, { Fragment } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Action, ThunkDispatch } from "@reduxjs/toolkit";
+import { User } from "firebase/auth";
+import { Fragment, SyntheticEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import teampicklogo from "../..//assets/images/teampick_logo.png";
 import { logOutUser } from "../../features/auth";
+import { IBasicCredentials } from "../../features/auth/models";
 import { routes } from "../../routes/AppRoutes";
 import type { IAppState } from "../../store";
 
 export const TopNavBar = () => {
 	const user = useSelector((state: IAppState) => state.auth.user);
+	const dispatch =
+		useDispatch<ThunkDispatch<User, IBasicCredentials, Action>>();
+	const navigate = useNavigate();
+
+	const handleLogOut = async (e: SyntheticEvent) => {
+		try {
+			dispatch(logOutUser())
+			navigate("/signin");
+
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
 	function classNames(...classes: string[]) {
 		return classes.filter(Boolean).join(" ");
@@ -91,7 +107,7 @@ export const TopNavBar = () => {
 																	active ? "bg-gray-100" : "",
 																	"block px-4 py-2 text-sm text-gray-700",
 																)}
-																onClick={logOutUser}
+																onClick={handleLogOut}
 															>
 																Sign out
 															</button>
